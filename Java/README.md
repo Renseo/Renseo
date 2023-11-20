@@ -39,9 +39,6 @@ High Level Language 자체를 CPU가 직접 실행할 수는 없다!
 ___
 ## Java
 ### Java와 JVM
-Java 언어의 모토? ⇒ Write Once Run Anywhere
-- 한번 작성한 코드를 어떤 컴퓨터에서든 실행할 수 있도록!
-- CPU마다 받아들이는 기계어가 다른데 어떻게?
 
 Java 언어를 ‘컴파일’하면 무엇이 나올까?
 - Java Bytecode 라는게 나온다.
@@ -135,4 +132,296 @@ System.out.println(scanner.nextLine());
 Hello Java!!!
 만나서 반갑습니다!!! // 키보드로 입력한 내용 + Enter
 만나서 반갑습니다!!! // 출력된 결과
+```
+
+## 변수 & 자료형
+
+### 변수
+변수 - 데이터를 담는 상자와 같은 역할
+```java
+public class HelloJava {
+    putblic static void main(String[] args) {
+        int a = 100;
+        System.out.println(a);
+        String b = "Hello Variables!";
+        System.out.println(b);
+    }
+}
+```
+- 할당 연산자(=)를 이용해 값을 저장
+(할당)할 수 있다.
+- <자료형> <이름> = <값>
+- 변수를 만드는 걸 선언(declare)한다
+고 부른다.
+- 변수의 값은 다시 할당할 수 있다.
+
+선언과 할당은 반드시 한번에 이뤄질 필요는 없다.
+```java
+int date;
+// 어떤 작업 이후
+date = 100;
+```
+한 줄에 여러 변수를 동시에 선언할 수도 있다.
+```
+int month = 11, day = 20;
+```
+
+### 변수 이름 짓기
+문법적인 관점
+1. 숫자로 시작할 수 없다. (1st, 2nd 등)
+2. _ 와 $ 외의 특수문자를 사용할 수 없다. (maxInt# 등)
+3. int, class, return 등의 예약어(Java 내부적으로 사용하는 단어, Keyword)를 사용할 수 없다.
+
+변수의 이름과 같이 개발자가 정할 수 있는 이름을 식별자(identifier)라고 부름  
+
+Naming Convention
+- 서로 다른 개발자가 이름을 보았을 때 그것이 무엇인지(변수인지 아니면 다른 무엇인지) 알아볼 수 있도록 상호 합의된 규칙
+- Java에서 변수 이름을 정할 때는 일반적으로 `camelCase`로 짓는다.
+- 기본적으로 소문자 활용
+- 여러 단어를 변수 이름에 쓰고 싶다면, 단어가 바뀌는 시점에 대문자를 활용
+
+```java
+int 1stVar = 10;     // 문법적으로 올바르지 않기 떄문에 실행되지 않습니다.  
+int second_var = 23; // 문법적으로는 오류가 없지만, Naming Convention에 어긋납니다.
+int thirdVar = 42;   // Java에서 변수 이름을 짓는 옳은 방법입니다.
+```
+
+### 자료형
+데이터의 종류
+- 어떤 변수를 선언하면서, 해당 변수가 어떤 데이터를 저장할 수 있는지를 정의
+- 어떤 자료형을 가진 변수에, 다른 자료형의 데이터를 할당하려고 하면 오류가 발생
+
+```java
+int intNumber = 10;
+double realNumber = 365.25;
+char character = 'a';
+boolean trueOrFalse = true;
+String string = "this is string";
+```
+
+### 정수 자료형
+주로 `int`, `long`이 활용된다.  
+자료형|최소|최대|
+:-|-|-
+`int`|-2147483648|2147483647
+`ling`|-9223372036854775808|9223372036854775807
+`short`|-32768|32767
+`byte`|-128|127
+
+```java
+int integer = 10;
+long bigInteger - 1000000000L;
+short smallInteger = 10000;
+byte reallySmallInteger = 127;
+```
+
+### 실수 자료형
+`float`, `double`이 있으며, 기본적으로 소숫점을 사용해 숫자를 표현하면 `double`이 된다.
+자료형|최소|최대|유효자리수
+:-|-|-|-:
+`float`|-3.4*10^38|3.4*10^38|7
+`double`|-1.7*10^308|1.7*10^308|16
+```java
+float floatPoint = 2.718281F;
+double doublePoint = 3.14159265359;
+```
+유효자리를 벗어나면 나머지는 반올림된다.
+```java
+double longPi = 3.14159265358979323846;
+```
+
+### 불린(`boolean`) 자료형
+참 또는 거짓을 표현하기 위한 자료형. 데이터 자체는 `true` 또는 `false`로 나타낸다.  
+```java
+boolean success = false;
+boolean willSuccess = true;
+```
+상태를 표현하기 위한 용도로 많이 활용되며, 제어문과 많이 사용된다.
+
+### 문자(`char`) 자료형
+단일 문자를 표현하기 위한 자료형
+```java
+char alphabet = 'a';
+char charRepInt = '1';
+```
+작은 따옴표를 사용한다.
+
+### 문자열(`String`) 자료형
+여러 글자를 합쳐 단어, 문장 등을 표현하기 위한 문자(`char`)들의 나열
+```java
+String word = "Hello";
+String sentence = "this is a String variable.";
+```
+큰 따옴표를 사용
+
+## 데이터 입력받기
+
+### `Scanner`로 다양한 데이터 받기
+```java
+//지금은 의미에 대해 깊이 생각하지 맙시다.
+Scanner scnner = new Scanner(System.in);
+System.out.println(scanner.nextLine());
+```
+
+```java
+byte scanByte = scanner.nextByte();
+short scanShort = scanner.nextShort();
+int scannedInt = scanner.nextInt();
+long scanndeLong = scanner.nextLong();
+System.out.println(scannedByte);
+System.out.println(scannedShort);
+System.out.println(scannedInt);
+System.out.println(scanndeLong);
+```
+- 기본적으로 받고자 하는 자료형의 이름이 담긴 메서드를 사용한다.
+- 메서드는 추후 더 자세히 다룬다.
+
+```java
+float scanFloat = scanner.nextFloat();
+double scanDouble = scanner.nextDouble();
+```
+`float` 데이터를 받는다고 굳이 입력에 F를 넣어주지 않는다. 오히려 오류가 발생한다.
+
+```java
+boolean scanBool = scanner.nextBoolean();
+```
+`true`, `false`를 대소문자 구분없이 넣어줄 수 있다.
+
+```java
+System.out.println("scnner.nextLine");
+```
+엔터 입력까지 한줄의 문자열을 입력받는다.
+
+### Scanner 사용시 주의점
+```java
+byte scanByte = scanner.nextByte();
+short scanShort = scanner.nextShort();
+int scannedInt = scanner.nextInt();
+long scanndeLong = scanner.nextLong();
+```
+위와 같은 코드에서, 1 1 1 1 처럼 공백으로 구분된 정수 넷이 입력되면?
+- 네 줄의 코드가 동시에 동작한다.
+- `Scanner`는 한 줄의 입력에 대해서 동작하는게 아니라, 입력된 모든 내용에서 일치하는 데이터를
+찾는다.
+
+## 문자열 응용
+
+### Escape Sequence
+
+문자열 내부에 특수한 문자를 표현하고 싶다면?
+- 문자열은 `“`를 쓰는데, 쓰고 싶은 데이터도 `“`라면?
+- String 변수안에 다음 줄을 쓰고 싶다면?
+- 탭 같이 동작하는 들여쓰기?
+
+`Escape Sequence` – 키보드로 입력하기 어려운 특수한 문자를 표현하기 위해 사용되는 문자 조합
+- `Escape Character` – `Escape Sequence`를 만들기 시작한다는 의미의 특수문자`,` 주로 `\`가 활용됨
+
+#### 특수문자 표현하기
+```java
+// 문자열 내부에 " 표현하기
+System.out.println("\"");
+// cahr 데이터로 ' 표현하기
+System.out.println('\'');
+// 문자열 내부에 \ 표현하기
+System.out.println("\\");
+```
+
+Escape Sequence|결과
+-|-
+\n|다음 줄
+\t|탭
+\r|캐리지 리턴
+\b|백스페이스
+
+```java
+System.out.println("개행문자: \n이 다음은 다음 줄이 표현됩니다.");
+System.out.println("탭키: \t다음 탭의 위치까지 옮긴 뒤 표현됩니다.");
+System.out.println("Carriage Return: \r줄의 앞으로 옮깁니다.");
+System.out.println("백스페이스: \b앞의 문자를 하나 지웁니다.");
+```
+
+실행결과
+
+```
+개행문자:
+ 이 다음은 아래줄에 표현됩니다.
+탭키:   다음 탭의 위치까지 옮긴 뒤 표현됩니다.
+줄의 앞으로 옮깁니다.
+백스페이스:앞의 문자를 하나 지웁니다.
+```
+실제 문자라기보단, 화면상의 커서를 옮기라는 명령이다.
+
+### String Formatting
+어떤 문구를 문자열로 나타낸다고 할 때, 상황에 따라 일부분만 바꿔서 여러번 표현하고 싶은 경우가 생길 수 있다.
+
+```java
+String message = "미세먼지 농도: 10 (좋음)";
+```
+농도와 상태 메시지(좋음)은 다른 변수에 저장해도 괜찮지 않을까?
+```java
+int dust = 10;
+String status = "좋음";
+// 미세먼지 농도: 10 (좋음)
+System.out.println(String.format("미세먼지 농도: %d (%s)", dust, status));
+```
+Java에는 여러 방법이 있지만, 주로 `String.format()`을 많이 활용한다.
+- 템플릿 역할을 하는 문자열을 넣어주고,
+- 뒤에 템플릿에 사용할 값들을 넣어준다.
+- 최소한 템플릿에서 필요로 하는 만큼의 값들은 넣어주어야 한다.
+
+코드|자료형
+:-|-
+%s|문자열(String)
+%c|문자(char)
+%d|정수(int)
+%f|부동소수(float, double)
+
+포맷 코드(format specifiers)
+어떤 자료형의 데이터가 표현 될지를 문자열 내부에 지정하는 방법
+```java
+System.out.println(String.format("미세먼지 농도: %d (%s)", dust, status));
+System.out.println(String.format("초미세먼지: %d", dust));
+System.out.println(String.format("오존: %.4f", 0.0229));
+```
+
+## 배열
+배열 - 하나의 변수에 여러 데이터를 정리하여 저장하기 위해 사용한다.
+```java
+int[] scores = {85, 75, 90};
+```
+
+- 변수를 선언할 때, 자료형 뒤에 [] 를 덧붙여 선언, 그 뒤 {}를 이용해 저장할 값들을 나열한다.
+- 이후 다시 가져올 때는 변수에 [] 를 이용하며, [] 안에 몇번째 값을 가져올지를 지정한다.
+- 첫번째 아이템은 0이다.
+```java
+int[] scores = {85, 75, 90};
+
+System.out.println(scores[0]);
+System.out.println(scores[1]);
+System.out.println(scores[2]);
+```
+
+- 내부의 개별 데이터를 바꿔줄 때도 [] 를 이용해 접근, = 를 이용해 할당할 수 있다.
+
+```java
+int[] scores = {85, 75, 90}
+scores[1] = 80;
+System.out.println(scores[0]);
+System.out.println(scores[1]);
+System.out.println(scores[2]);
+```
+
+- 배열에 들어갈 데이터가 정해지기 전이라면, 크기를 먼저 결정해서 할당할 수 있다.
+```java
+String[] names = new String[4];
+names[0] = "alex";
+System.out.println(names[0]);
+```
+- 문법 자체는 지금은 신경쓰지 말자.
+
+- 크기를 정할 때, 그 크기도 마찬가지로 변수로 전달할 수 있다.
+```java
+int students = 10;
+        String[] names = new String[students];
+        scores = new int[students];
 ```
